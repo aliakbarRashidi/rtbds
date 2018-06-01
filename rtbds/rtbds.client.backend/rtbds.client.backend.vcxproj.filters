@@ -5,5 +5,48 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Code\rtbds.client.backend">
+      <UniqueIdentifier>{ee3cf775-dfdd-4f76-a303-e4b433a2aa93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\rtbds.client.backend\security.cryptography">
+      <UniqueIdentifier>{819a47d7-f37d-452c-ab5c-5c57de88450a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\rtbds.client.backend\security.cryptography\asymmetric">
+      <UniqueIdentifier>{487eccdb-8433-405a-b3c7-657390d805b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\rtbds.client.backend\exceptions">
+      <UniqueIdentifier>{e9f6fdef-689a-41b7-bd6e-a0151ddc8b84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\rtbds.client.backend\network">
+      <UniqueIdentifier>{47386f5e-24e9-4903-afeb-7cb30656ac06}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RtbdsClientBackend.h">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="Rsa.h">
+      <Filter>Code\rtbds.client.backend\security.cryptography\asymmetric</Filter>
+    </ClInclude>
+    <ClInclude Include="BackendException.h">
+      <Filter>Code\rtbds.client.backend\exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientBackend.h">
+      <Filter>Code\rtbds.client.backend</Filter>
+    </ClInclude>
+    <ClInclude Include="IClientFrontend.h">
+      <Filter>Code\rtbds.client.backend</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Rsa.cpp">
+      <Filter>Code\rtbds.client.backend\security.cryptography\asymmetric</Filter>
+    </ClCompile>
+    <ClCompile Include="BackendException.cpp">
+      <Filter>Code\rtbds.client.backend\exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientBackend.cpp">
+      <Filter>Code\rtbds.client.backend</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

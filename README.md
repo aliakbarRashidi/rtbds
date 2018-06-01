@@ -60,6 +60,8 @@ RTBDS is written in **modern C++11** and uses the following libraries:
 * [boost::asio](https://github.com/boostorg/asio) for networking
 * [boost::filesystem](https://github.com/boostorg/filesystem) for filesystem-related operations
 * [boost::program_options](https://github.com/boostorg/program_options) for parsing command line options
+* [boost::signals2](https://github.com/boostorg/signals2) for signals and slots mechanism
+* [transporter](https://github.com/GuiTeK/transporter) for network messages
 * [nlohmann/json](https://github.com/nlohmann/json) for JSON parsing
 
 
@@ -68,7 +70,7 @@ RTBDS is written in **modern C++11** and uses the following libraries:
 1. Clone the repository: `git clone git@github.com:GuiTeK/rtbds.git`
 2. Initialize and update submodules (namely [transporter library](https://github.com/GuiTeK/transporter)): `git submodule update --init --recursive`
 2. Install [vcpkg](https://github.com/Microsoft/vcpkg)
-3. Run `vcpkg install librsync botan boost-asio boost-filesystem boost-program-options nlohmann-json`
+3. Run `vcpkg install librsync botan boost-asio boost-filesystem boost-program-options boost-signals2 nlohmann-json`
 
 You're all set!
 

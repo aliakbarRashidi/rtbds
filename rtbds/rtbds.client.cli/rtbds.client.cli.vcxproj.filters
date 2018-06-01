@@ -5,5 +5,24 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Code\rtbds.client.cli">
+      <UniqueIdentifier>{bab28c43-6ccb-4326-802d-7e4c5c540a58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientFrontend.cpp">
+      <Filter>Code\rtbds.client.cli</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RtbdsClientCli.h">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientFrontend.h">
+      <Filter>Code\rtbds.client.cli</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
