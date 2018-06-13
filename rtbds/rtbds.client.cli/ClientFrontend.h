@@ -19,10 +19,13 @@ namespace rtbds
 			class ClientFrontend : public rtbds::client::backend::IClientFrontend
 			{
 			public:
+				ClientFrontend();
+
 				int run(int argc, char *argv[]);
 
-				virtual std::string on_rsaKeypairGenerationPassphraseNeeded() noexcept override;
-				virtual void on_rsaKeypairGenerationFinished(bool success, const std::string &msg) noexcept override;
+				std::string on_rsaKeypairGenerationPassphraseNeeded() noexcept;
+				void on_rsaKeypairGenerationResult(bool success, const rtbds::client::backend::exceptions::BackendException &e) noexcept;
+				void on_clientAuthenticationResult(bool success, const rtbds::client::backend::exceptions::BackendException &e) noexcept;
 
 
 			private:
@@ -48,6 +51,7 @@ namespace rtbds
 
 				std::unique_ptr<rtbds::client::backend::ClientBackend> m_clientBackend;
 				boost::asio::io_context m_ioContext;
+				boost::asio::io_context::work m_ioContextWork;
 			};
 		}
 	}

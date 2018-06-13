@@ -20,7 +20,7 @@ namespace rtbds
 				class RTBDSCLIENTBACKEND_DLL BackendException : std::exception
 				{
 				public:
-					BackendException(const std::string &msg);
+					BackendException(const std::string &msg = "");
 
 					virtual const char *what() const noexcept override;
 

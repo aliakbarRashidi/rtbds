@@ -20,6 +20,13 @@
 
 #include "RtbdsClientCli.h"
 
+rtbds::client::cli::ClientFrontend::ClientFrontend() :
+	m_clientBackend{ nullptr },
+	m_ioContext{},
+	m_ioContextWork{ m_ioContext }
+{
+}
+
 int rtbds::client::cli::ClientFrontend::run(int argc, char *argv[])
 {
 	rtbds::client::backend::ClientBackend::Args clientBackendArgs{};
@@ -89,14 +96,14 @@ int rtbds::client::cli::ClientFrontend::run(int argc, char *argv[])
 		std::cout << genericOptionsDesc << std::endl;
 	}
 
-	m_clientBackend = std::unique_ptr<rtbds::client::backend::ClientBackend>{ new rtbds::client::backend::ClientBackend{ clientBackendArgs } };
+	m_clientBackend = std::unique_ptr<rtbds::client::backend::ClientBackend>{ new rtbds::client::backend::ClientBackend{ clientBackendArgs, *this } };
 	m_clientBackend->rsaKeypairGenerationPassphraseNeeded.connect([this]() -> std::string { return this->on_rsaKeypairGenerationPassphraseNeeded(); });
-	m_clientBackend->rsaKeypairGenerationFinished.connect([this](bool success, const std::string &msg) -> void { this->on_rsaKeypairGenerationFinished(success, msg); });
+	m_clientBackend->rsaKeypairGenerationResult.connect([this](bool success, const rtbds::client::backend::exceptions::BackendException &e) -> void { this->on_rsaKeypairGenerationResult(success, e); });
+	m_clientBackend->clientAuthenticationResult.connect([this](bool success, const rtbds::client::backend::exceptions::BackendException &e) -> void { this->on_clientAuthenticationResult(success, e); });
 
 	std::thread clientBackendThread{ std::bind(&rtbds::client::backend::ClientBackend::run, m_clientBackend.get()) };
 	
 	m_ioContext.run();
-
 	clientBackendThread.join();
 
 	return EXIT_SUCCESS;
@@ -131,7 +138,7 @@ std::string rtbds::client::cli::ClientFrontend::on_rsaKeypairGenerationPassphras
 	return passphrase;
 }
 
-void rtbds::client::cli::ClientFrontend::on_rsaKeypairGenerationFinished(bool success, const std::string &msg) noexcept
+void rtbds::client::cli::ClientFrontend::on_rsaKeypairGenerationResult(bool success, const rtbds::client::backend::exceptions::BackendException &e) noexcept
 {
 	if (success)
 	{
@@ -140,7 +147,20 @@ void rtbds::client::cli::ClientFrontend::on_rsaKeypairGenerationFinished(bool su
 
 	else
 	{
-		std::cerr << "RSA keypair generation failed: " << msg << std::endl;
+		std::cerr << "RSA keypair generation failed: " << e.what() << std::endl;
+	}
+}
+
+void rtbds::client::cli::ClientFrontend::on_clientAuthenticationResult(bool success, const rtbds::client::backend::exceptions::BackendException &e) noexcept
+{
+	if (success)
+	{
+		std::cout << "Successfully authenticated to the server" << std::endl;
+	}
+
+	else
+	{
+		std::cerr << "Authentication to server failed: " << e.what() << std::endl;
 	}
 }
 

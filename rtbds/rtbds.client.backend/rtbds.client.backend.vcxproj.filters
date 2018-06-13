@@ -37,6 +37,9 @@
     <ClInclude Include="IClientFrontend.h">
       <Filter>Code\rtbds.client.backend</Filter>
     </ClInclude>
+    <ClInclude Include="NetworkClient.h">
+      <Filter>Code\rtbds.client.backend\network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Rsa.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="ClientBackend.cpp">
       <Filter>Code\rtbds.client.backend</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkClient.cpp">
+      <Filter>Code\rtbds.client.backend\network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
